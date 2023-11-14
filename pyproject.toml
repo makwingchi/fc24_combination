@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "fc24_combination"
+version = "1.0.0"
+description = ""
+authors = ["Rongzhi Mai <makwin9chi@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.9"
+numpy = "1.24.2"
+
+[tool.poetry.dev-dependencies]
+poethepoet = "^0.10.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[[tool.poetry.source]]
+name = "aliyun"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+default = true
