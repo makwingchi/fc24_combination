@@ -1,6 +1,8 @@
-import input
-import optimize
+import datetime
 import pandas as pd
+import input3 as input
+import optimize3 as optimize
+
 
 # Preprocess the club dataset obtained from https://github.com/ckalgos/fut-trade-enhancer.
 def preprocess_data_1(df: pd.DataFrame):
@@ -24,12 +26,12 @@ def preprocess_data_2(df: pd.DataFrame):
     df["Color"] = df["Rating"].apply(lambda x: 'Bronze' if x < 65 else ('Silver' if 65 <= x <= 74 else 'Gold'))
     df.insert(2, 'Color', df.pop('Color'))
     # df = df[df["Color"] != "Gold"] # Can be used for constraints like Player Quality: Max Silver.
-    # df = df[df["Untradeable"] == True]
+    df = df[df["Untradeable"] == True]
     # df = df[df["IsInActive11"] != True]
     df = df[df["Loans"] == False]
     df = df[df["Cost"] != '-- NA --']
-    df = df[df["Cost"] != '0']
-    df = df[df["Cost"] != 0]
+    # df = df[df["Cost"] != '0']
+    # df = df[df["Cost"] != 0]
     # Note: The filter on rating is especially useful when there is only a single constraint like Squad Rating: Min XX.
     # Otherwise, the search space is too large and this overwhelms the solver (very slow in improving the bound).
     # df = df[(df["Rating"] >= input.SQUAD_RATING - 3) & (df["Rating"] <= input.SQUAD_RATING + 3)]
@@ -53,10 +55,11 @@ def preprocess_data_2(df: pd.DataFrame):
 if __name__ == "__main__":
     dataset = "Brownie.csv"
     df = pd.read_csv(dataset, index_col = False)
-    df = df[~df.League.eq("Ligue 1 Uber Eats") & df.Rating.le(80)]
+    df = df[df.League.isin(["Bundesliga", "Serie A TIM"]) & df.Rating.le(81)]
     # df = preprocess_data_1(df)
     df = preprocess_data_2(df)
 
+    # df.to_excel("Club_Pre_Processed.xlsx", index = False)
     final_players = optimize.SBC(df)
     if final_players:
         df_out = df.iloc[final_players].copy()
@@ -67,4 +70,6 @@ if __name__ == "__main__":
         print(f"Total Cost: {df_out['Cost'].sum()}")
         df_out['Org_Row_ID'] = df_out['Original_Idx'] + 2
         df_out.pop('Original_Idx')
-        df_out.to_excel("output.xlsx", index = False)
+        df_out.sort_values(["League", "Rating"], inplace=True, ascending=[True, False])
+        df_out.to_excel("output3.xlsx", index = False)
+        print(f"program finished @ {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
