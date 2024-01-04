@@ -1,4 +1,3 @@
 # fc24 combination
 
-Brute-force solution for EA's FC24 football (soccer) game.
-Given a player's storage of 80-90 rating players, the price of each rating, and a target squad rating, the code will output all rating combinations, which are sorted by their total price in ascending order.
+Modified from https://github.com/Regista6/EA-FC-24-Automated-SBC-Solving. This project utilizes Google OR Tools to solve SBCs in EA's FC24 football (soccer) game. main3.py/input3.py/optimize3.py are adapted to solve the third squad in Premium Mixed Leagues Upgrade, and main4.py/input4.py/optimize4.py are for the fourth one in the same challenge.
