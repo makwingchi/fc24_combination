@@ -1,3 +1,4 @@
+import datetime
 import input
 import optimize
 import pandas as pd
@@ -53,11 +54,11 @@ def preprocess_data_2(df: pd.DataFrame):
 if __name__ == "__main__":
     dataset = "Brownie.csv"
     df = pd.read_csv(dataset, index_col = False)
-    df = df[~df.League.eq("Ligue 1 Uber Eats") & df.Rating.le(80)]
-    # df = preprocess_data_1(df)
+    df = df[~df.League.eq("Ligue 1 Uber Eats") & df.Rating.le(80) & ~df.Rarity.eq("In-Progress Evolution")]
     df = preprocess_data_2(df)
 
     final_players = optimize.SBC(df)
+
     if final_players:
         df_out = df.iloc[final_players].copy()
         df_out.insert(5, 'Is_Pos', df_out.pop('Is_Pos'))
@@ -67,4 +68,5 @@ if __name__ == "__main__":
         print(f"Total Cost: {df_out['Cost'].sum()}")
         df_out['Org_Row_ID'] = df_out['Original_Idx'] + 2
         df_out.pop('Original_Idx')
-        df_out.to_excel("output.xlsx", index = False)
+        df_out.to_csv("output.csv", index = False)
+        print(f"program finished @ {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")

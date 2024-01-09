@@ -55,12 +55,14 @@ def preprocess_data_2(df: pd.DataFrame):
 if __name__ == "__main__":
     dataset = "Brownie.csv"
     df = pd.read_csv(dataset, index_col = False)
-    df = df[df.League.isin(["LALIGA EA SPORTS", "Premier League"]) & df.Rating.le(81)]
-    # df = preprocess_data_1(df)
+    df = df[df.League.isin(["LALIGA EA SPORTS", "Premier League"]) & df.Rating.le(81) & ~df.Rarity.eq("In-Progress Evolution")]
     df = preprocess_data_2(df)
 
-    # df.to_excel("Club_Pre_Processed.xlsx", index = False)
+    df.loc[df["Color"].eq("Silver"), "Cost"] = 350
+    df.loc[df["Color"].eq("Bronze"), "Cost"] = 200
+
     final_players = optimize.SBC(df)
+
     if final_players:
         df_out = df.iloc[final_players].copy()
         df_out.insert(5, 'Is_Pos', df_out.pop('Is_Pos'))
@@ -71,5 +73,5 @@ if __name__ == "__main__":
         df_out['Org_Row_ID'] = df_out['Original_Idx'] + 2
         df_out.pop('Original_Idx')
         df_out.sort_values(["League", "Rating"], inplace=True, ascending=[True, False])
-        df_out.to_excel("output4.xlsx", index = False)
+        df_out.to_csv("output4.csv", index = False)
         print(f"program finished @ {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
