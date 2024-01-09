@@ -562,22 +562,22 @@ def SBC(df):
     '''Club'''
     # model = create_club_constraint(df, model, player, map_idx, players_grouped, num_cnts)
     # model = create_max_club_constraint(df, model, player, map_idx, players_grouped, num_cnts)
-    model = create_min_club_constraint(df, model, player, map_idx, players_grouped, num_cnts)
-    # model = create_unique_club_constraint(df, model, player, club, map_idx, players_grouped, num_cnts)
+    # model = create_min_club_constraint(df, model, player, map_idx, players_grouped, num_cnts)
+    model = create_unique_club_constraint(df, model, player, club, map_idx, players_grouped, num_cnts)
     '''Club'''
 
     '''League'''
     # model = create_league_constraint(df, model, player, map_idx, players_grouped, num_cnts)
     # model = create_max_league_constraint(df, model, player, map_idx, players_grouped, num_cnts)
     # model = create_min_league_constraint(df, model, player, map_idx, players_grouped, num_cnts)
-    # model = create_unique_league_constraint(df, model, player, league, map_idx, players_grouped, num_cnts)
+    model = create_unique_league_constraint(df, model, player, league, map_idx, players_grouped, num_cnts)
     '''League'''
 
     '''Country'''
     # model = create_country_constraint(df, model, player, map_idx, players_grouped, num_cnts)
-    # model = create_max_country_constraint(df, model, player, map_idx, players_grouped, num_cnts)
+    model = create_max_country_constraint(df, model, player, map_idx, players_grouped, num_cnts)
     # model = create_min_country_constraint(df, model, player, map_idx, players_grouped, num_cnts)
-    model = create_unique_country_constraint(df, model, player, country, map_idx, players_grouped, num_cnts)
+    # model = create_unique_country_constraint(df, model, player, country, map_idx, players_grouped, num_cnts)
     '''Country'''
 
     '''Rarity'''
@@ -588,7 +588,7 @@ def SBC(df):
     '''Squad Rating'''
     # model = create_squad_rating_constraint_1(df, model, player, map_idx, players_grouped, num_cnts)
     # model = create_squad_rating_constraint_2(df, model, player, map_idx, players_grouped, num_cnts)
-    model = create_squad_rating_constraint_3(df, model, player, map_idx, players_grouped, num_cnts)
+    # model = create_squad_rating_constraint_3(df, model, player, map_idx, players_grouped, num_cnts)
     '''Squad Rating'''
 
     '''Min Overall'''
@@ -620,7 +620,7 @@ def SBC(df):
     # solver.parameters.random_seed = 42
     solver.parameters.max_time_in_seconds = 3600
     # Whether the solver should log the search progress.
-    solver.parameters.log_search_progress = True
+    solver.parameters.log_search_progress = False
     # Specify the number of parallel workers (i.e. threads) to use during search.
     # This should usually be lower than your number of available cpus + hyperthread in your machine.
     # Setting this to 16 or 24 can help if the solver is slow in improving the bound.
