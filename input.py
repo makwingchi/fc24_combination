@@ -1,6 +1,6 @@
 '''INPUTS'''
 
-FORMATION = "4-3-3[5]"
+FORMATION = "4-3-3"
 
 NUM_PLAYERS = 11
 
@@ -42,27 +42,27 @@ NUM_LEAGUE = [1]  # Total players from i^th list >= NUM_LEAGUE[i]
 
 MAX_NUM_LEAGUE = 5  # Same League Count: Max X / Max X Players from the Same League
 MIN_NUM_LEAGUE = 4  # Same League Count: Min X / Min X Players from the Same League
-NUM_UNIQUE_LEAGUE = [3, "Min"]  # Leagues: Max / Min / Exactly X
+NUM_UNIQUE_LEAGUE = [2, "Min"]  # Leagues: Max / Min / Exactly X
 
 COUNTRY = [["Netherlands"]]
 NUM_COUNTRY = [1]  # Total players from i^th list >= NUM_COUNTRY[i]
 
-MAX_NUM_COUNTRY = 5  # Same Nation Count: Max X / Max X Players from the Same Nation
+MAX_NUM_COUNTRY = 4  # Same Nation Count: Max X / Max X Players from the Same Nation
 MIN_NUM_COUNTRY = 4  # Same Nation Count: Min X / Min X Players from the Same Nation
 NUM_UNIQUE_COUNTRY = [3, "Min"]  # Nations: Max / Min / Exactly X
 
 RARITY_1 = [['Gold', 'TOTW']]
 NUM_RARITY_1 = [1]  # This is for cases like "Gold IF: Min X (0/X)"
 
-RARITY_2 = ["Rare"] # [Rare, Common, TOTW, Gold, Silver, Bronze ... etc]
-NUM_RARITY_2 = [9]   # Total players from i^th Rarity >= NUM_RARITY_2[i]
+RARITY_2 = ["Rare", "Gold"] # [Rare, Common, TOTW, Gold, Silver, Bronze ... etc]
+NUM_RARITY_2 = [5, 10]   # Total players from i^th Rarity >= NUM_RARITY_2[i]
 
 SQUAD_RATING = 75 # Squad Rating: Min XX
 
 MIN_OVERALL = [83]
 NUM_MIN_OVERALL = [1]  # Minimum OVR of XX : Min X
 
-CHEMISTRY = 22  # Squad Total Chemistry Points: Min X
+CHEMISTRY = 27  # Squad Total Chemistry Points: Min X
                 # If there is no constraint on total chemistry, then set this to 0.
 
 CHEM_PER_PLAYER = 0  # Chemistry Points Per Player: Min X
