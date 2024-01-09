@@ -630,7 +630,7 @@ def SBC(df):
     # solver.parameters.random_seed = 42
     solver.parameters.max_time_in_seconds = 3600
     # Whether the solver should log the search progress.
-    solver.parameters.log_search_progress = True
+    solver.parameters.log_search_progress = False
     # Specify the number of parallel workers (i.e. threads) to use during search.
     # This should usually be lower than your number of available cpus + hyperthread in your machine.
     # Setting this to 16 or 24 can help if the solver is slow in improving the bound.
