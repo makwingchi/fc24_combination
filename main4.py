@@ -27,7 +27,7 @@ def preprocess_data_2(df: pd.DataFrame):
     df.insert(2, 'Color', df.pop('Color'))
     # df = df[df["Color"] != "Gold"] # Can be used for constraints like Player Quality: Max Silver.
     df = df[df["Untradeable"] == True]
-    # df = df[df["IsInActive11"] != True]
+    # # df = df[df["IsInActive11"] != True]
     df = df[df["Loans"] == False]
     df = df[df["Cost"] != '-- NA --']
     # df = df[df["Cost"] != '0']
